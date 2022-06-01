@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 abstract class BaseViewModel : ViewModel() {
     val dataLoading = ObservableBoolean(false)
 
-    private val _showMessage = MutableSharedFlow<String>()
+    val _showMessage = MutableSharedFlow<String>()
     val showMessage = _showMessage.asSharedFlow()
 
     val navigateToDestination: LiveData<Event<Pair<String, Any>>>
