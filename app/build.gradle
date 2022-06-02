@@ -54,4 +54,15 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     api 'com.squareup.retrofit2:converter-moshi:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+
+    implementation("androidx.paging:paging-runtime:3.1.1")
+
+    def glide_version = "4.13.0"
+    api "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
+    //navigation
+    api 'androidx.navigation:navigation-ui-ktx:2.4.2'
+    api 'androidx.navigation:navigation-runtime-ktx:2.4.2'
+    api 'androidx.navigation:navigation-fragment-ktx:2.4.2'
 }

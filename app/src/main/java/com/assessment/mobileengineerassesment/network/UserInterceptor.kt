@@ -10,10 +10,9 @@ class UserInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val userAgentRequest = chain.request()
             .newBuilder()
-            .addHeader("Accept", "application/json")
             .addHeader("Content-Type", "application/json")
             .addHeader("Accept-Version", "v1")
-            //.addHeader("client_id", "v1") todo will replace this from gradle string later
+            .addHeader("Authorization", "Client-ID iE-12NYM4QepbkNKyHLKbyEaYzJ5vCzNCTa_Ps8JDEw")
             .build()
         return chain.proceed(userAgentRequest)
     }
