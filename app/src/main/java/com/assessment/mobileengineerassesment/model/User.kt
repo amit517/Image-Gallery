@@ -3,42 +3,42 @@ package com.assessment.mobileengineerassesment.model
 import com.squareup.moshi.Json
 
 data class User(
-    @Json(name = "accepted_tos")
+    @field:Json(name = "accepted_tos")
     val acceptedTos: Boolean,
-    @Json(name = "bio")
+    @field:Json(name = "bio")
     val bio: String,
-    @Json(name = "first_name")
+    @field:Json(name = "first_name")
     val firstName: String,
-    @Json(name = "for_hire")
+    @field:Json(name = "for_hire")
     val forHire: Boolean,
-    @Json(name = "id")
+    @field:Json(name = "id")
     val id: String,
-    @Json(name = "instagram_username")
+    @field:Json(name = "instagram_username")
     val instagramUsername: String,
-    @Json(name = "last_name")
+    @field:Json(name = "last_name")
     val lastName: Any?,
-    @Json(name = "links")
+    @field:Json(name = "links")
     val userLinks: UserLinks,
-    @Json(name = "location")
+    @field:Json(name = "location")
     val location: Any?,
-    @Json(name = "name")
+    @field:Json(name = "name")
     val name: String,
-    @Json(name = "portfolio_url")
+    @field:Json(name = "portfolio_url")
     val portfolioUrl: String,
-    @Json(name = "profile_image")
+    @field:Json(name = "profile_image")
     val userProfileImage: UserProfileImage,
-    @Json(name = "social")
+    @field:Json(name = "social")
     val social: Social,
-    @Json(name = "total_collections")
+    @field:Json(name = "total_collections")
     val totalCollections: Int,
-    @Json(name = "total_likes")
+    @field:Json(name = "total_likes")
     val totalLikes: Int,
-    @Json(name = "total_photos")
+    @field:Json(name = "total_photos")
     val totalPhotos: Int,
-    @Json(name = "twitter_username")
+    @field:Json(name = "twitter_username")
     val twitterUsername: String,
-    @Json(name = "updated_at")
+    @field:Json(name = "updated_at")
     val updatedAt: String,
-    @Json(name = "username")
+    @field:Json(name = "username")
     val username: String
 )

@@ -3,18 +3,18 @@ package com.assessment.mobileengineerassesment.model
 import com.squareup.moshi.Json
 
 data class UserLinks(
-    @Json(name = "followers")
+    @field:Json(name = "followers")
     val followers: String,
-    @Json(name = "following")
+    @field:Json(name = "following")
     val following: String,
-    @Json(name = "html")
+    @field:Json(name = "html")
     val html: String,
-    @Json(name = "likes")
+    @field:Json(name = "likes")
     val likes: String,
-    @Json(name = "photos")
+    @field:Json(name = "photos")
     val photos: String,
-    @Json(name = "portfolio")
+    @field:Json(name = "portfolio")
     val portfolio: String,
-    @Json(name = "self")
+    @field:Json(name = "self")
     val self: String
 )
