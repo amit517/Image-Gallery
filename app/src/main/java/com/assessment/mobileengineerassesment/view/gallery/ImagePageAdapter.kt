@@ -31,7 +31,7 @@ class ImagePageAdapter(private val imageClickCallback: (ImageResponse?) -> (Any?
     inner class ImageResponseViewHolder(val bindingView: ItemGalleryImageBinding) :
         RecyclerView.ViewHolder(bindingView.root) {
         fun bind(imageResponse: ImageResponse?) {
-            // TODO:
+            bindingView.imageResponse = imageResponse
         }
     }
 }

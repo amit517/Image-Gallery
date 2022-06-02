@@ -7,4 +7,7 @@
     <color name="teal_700">#424C58</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="dots_indicator_color">#FFFFFF</color>
+    <color name="gallery_parent_background">#0B0B0B</color>
+
 </resources>

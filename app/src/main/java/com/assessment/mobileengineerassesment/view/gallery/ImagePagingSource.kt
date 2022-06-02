@@ -22,7 +22,7 @@ class ImagePagingSource(
         val position: Int = params.key ?: FIRST_PAGE_ITEM
 
         val response: GenericResponse<List<ImageResponse>> =
-            apiService.getImageCollection(position,pageSize)
+            apiService.getImageCollection(position,pageSize,imageSearchQuery.orderBy)
 
         return when (response) {
             is BaseResponse.Success -> {

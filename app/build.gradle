@@ -65,4 +65,6 @@ dependencies {
     api 'androidx.navigation:navigation-ui-ktx:2.4.2'
     api 'androidx.navigation:navigation-runtime-ktx:2.4.2'
     api 'androidx.navigation:navigation-fragment-ktx:2.4.2'
+    // dot indicator
+    implementation 'com.tbuonomo:dotsindicator:4.2'
 }

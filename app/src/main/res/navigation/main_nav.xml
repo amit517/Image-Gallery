@@ -7,12 +7,13 @@
 
     <fragment
         android:id="@+id/galleryFragment"
-        android:name="com.assessment.mobileengineerassesment.view.gallery.GalleryFragment"
+        android:name="com.assessment.mobileengineerassesment.view.gallery.GalleryParentFragment"
         android:label="GalleryFragment"
-        tools:layout="@layout/fragment_gallery">
+        tools:layout="@layout/fragment_gallery_parent">
         <action
             android:id="@+id/action_galleryFragment_to_imageDetailsFragment"
-            app:destination="@id/imageDetailsFragment" />
+            app:destination="@id/imageDetailsFragment"
+            app:popUpTo="@+id/galleryFragment"/>
     </fragment>
 
     <fragment

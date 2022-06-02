@@ -1,8 +1,7 @@
 package com.assessment.mobileengineerassesment.view.gallery
 
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.assessment.base.view.BaseFragment
 import com.assessment.base.viewmodel.BaseViewModel
 import com.assessment.mobileengineerassesment.R
@@ -14,11 +13,11 @@ import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
-    private val viewModel: GalleryFragmentVM by viewModels()
+    private val viewModel: GalleryFragmentVM by activityViewModels()
     private val imagePageAdapter by lazy { ImagePageAdapter(imageClickCallback) }
 
-    private val imageClickCallback = { imageresponse: ImageResponse? ->
-        findNavController().navigate(R.id.action_galleryFragment_to_imageDetailsFragment)
+    private val imageClickCallback = { imageResponse: ImageResponse? ->
+        viewModel.navigateToImageDetails(imageResponse)
     }
 
     override fun layoutId(): Int = R.layout.fragment_gallery
@@ -31,6 +30,14 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
         observeImageList()
 
         observePagerState()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        requireArguments().getInt(ARG_ORDER_BY).let { resId ->
+            viewModel.submitOrderList(getString(resId))
+            bindingView.headerTextView.text = getString(resId)
+        }
     }
 
     private fun initUi() {
@@ -51,5 +58,9 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
                 imagePageAdapter.submitData(viewLifecycleOwner.lifecycle, it)
             }
         }
+    }
+
+    companion object {
+        const val ARG_ORDER_BY = "ARG_ORDER_BY"
     }
 }

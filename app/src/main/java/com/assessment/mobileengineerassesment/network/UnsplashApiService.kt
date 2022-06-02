@@ -11,5 +11,6 @@ interface UnsplashApiService {
     suspend fun getImageCollection(
         @Query("page") page: Int,
         @Query("per_page") perPage: Int,
+        @Query("order_by") orderBy: String?,
     ): GenericResponse<List<ImageResponse>>
 }

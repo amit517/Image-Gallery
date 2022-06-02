@@ -3,6 +3,7 @@ package com.assessment.mobileengineerassesment.view.gallery
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.assessment.base.event.Event
 import com.assessment.base.viewmodel.BaseViewModel
 import com.assessment.mobileengineerassesment.model.ImageResponse
 import com.assessment.mobileengineerassesment.model.ImageSearchQuery
@@ -22,5 +23,15 @@ class GalleryFragmentVM @Inject constructor(
     @ExperimentalCoroutinesApi
     val imageDataList: Flow<PagingData<ImageResponse>> = filterData.flatMapLatest {
         imageListRepository.getImageFromRepository(it).cachedIn(viewModelScope)
+    }
+
+    fun submitOrderList(orderBy: String?) {
+        filterData.value = ImageSearchQuery(orderBy)
+    }
+
+    fun navigateToImageDetails(imageResponse: ImageResponse?) {
+        imageResponse?.let {
+            _navigateToDestination.postValue(Event(Pair("", imageResponse)))
+        }
     }
 }
