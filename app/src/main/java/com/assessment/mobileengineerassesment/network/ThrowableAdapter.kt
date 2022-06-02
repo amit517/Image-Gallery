@@ -1,4 +1,4 @@
-package com.assessment.base.network
+package com.assessment.mobileengineerassesment.network
 
 import com.squareup.moshi.ToJson
 import com.squareup.moshi.FromJson

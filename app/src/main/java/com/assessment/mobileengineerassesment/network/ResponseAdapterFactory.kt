@@ -1,6 +1,6 @@
-package com.assessment.base.network
+package com.assessment.mobileengineerassesment.network
 
-import com.assessment.base.network.model.BaseResponse
+import com.assessment.mobileengineerassesment.network.model.BaseResponse
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
