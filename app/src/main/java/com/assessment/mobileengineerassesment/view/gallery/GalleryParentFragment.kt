@@ -6,9 +6,10 @@ import com.assessment.base.view.BaseFragment
 import com.assessment.base.viewmodel.BaseViewModel
 import com.assessment.mobileengineerassesment.R
 import com.assessment.mobileengineerassesment.databinding.FragmentGalleryParentBinding
+import com.assessment.mobileengineerassesment.view.gallery.adapters.SlidingPageAdapter
 
 class GalleryParentFragment : BaseFragment<FragmentGalleryParentBinding>() {
-    private val viewModel: GalleryFragmentVM by activityViewModels()
+    private val viewModel: SharedGalleryVM by activityViewModels()
 
     override fun layoutId(): Int = R.layout.fragment_gallery_parent
 

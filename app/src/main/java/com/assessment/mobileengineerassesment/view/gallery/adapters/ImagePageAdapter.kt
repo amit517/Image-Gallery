@@ -1,4 +1,4 @@
-package com.assessment.mobileengineerassesment.view.gallery
+package com.assessment.mobileengineerassesment.view.gallery.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

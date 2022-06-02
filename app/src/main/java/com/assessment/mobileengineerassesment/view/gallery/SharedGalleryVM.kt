@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import javax.inject.Inject
 
 @HiltViewModel
-class GalleryFragmentVM @Inject constructor(
+class SharedGalleryVM @Inject constructor(
     private val imageListRepository: ImageListRepository,
 ) : BaseViewModel() {
     private val filterData = MutableStateFlow(ImageSearchQuery())

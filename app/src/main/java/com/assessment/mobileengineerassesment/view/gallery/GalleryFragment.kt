@@ -7,13 +7,14 @@ import com.assessment.base.viewmodel.BaseViewModel
 import com.assessment.mobileengineerassesment.R
 import com.assessment.mobileengineerassesment.databinding.FragmentGalleryBinding
 import com.assessment.mobileengineerassesment.model.ImageResponse
+import com.assessment.mobileengineerassesment.view.gallery.adapters.ImagePageAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
-    private val viewModel: GalleryFragmentVM by activityViewModels()
+    private val viewModel: SharedGalleryVM by activityViewModels()
     private val imagePageAdapter by lazy { ImagePageAdapter(imageClickCallback) }
 
     private val imageClickCallback = { imageResponse: ImageResponse? ->
