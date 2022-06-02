@@ -1,4 +1,4 @@
-package com.assessment.base.network
+package com.assessment.mobileengineerassesment.network
 
 import okhttp3.Interceptor
 import okhttp3.Response

@@ -1,4 +1,4 @@
-package com.assessment.base.network.model
+package com.assessment.mobileengineerassesment.network.model
 
 import java.io.IOException
 
