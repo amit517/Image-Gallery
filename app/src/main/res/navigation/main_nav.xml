@@ -9,6 +9,16 @@
         android:id="@+id/galleryFragment"
         android:name="com.assessment.mobileengineerassesment.view.gallery.GalleryFragment"
         android:label="GalleryFragment"
-        tools:layout="@layout/fragment_gallery"/>
+        tools:layout="@layout/fragment_gallery">
+        <action
+            android:id="@+id/action_galleryFragment_to_imageDetailsFragment"
+            app:destination="@id/imageDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/imageDetailsFragment"
+        android:name="com.assessment.mobileengineerassesment.view.imagedetails.ImageDetailsFragment"
+        android:label="ImageDetailsFragment"
+        tools:layout="@layout/fragment_image_details"/>
 
 </navigation>
