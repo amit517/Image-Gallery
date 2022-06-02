@@ -7,6 +7,7 @@ import com.assessment.base.viewmodel.BaseViewModel
 import com.assessment.mobileengineerassesment.model.ImageResponse
 import com.assessment.mobileengineerassesment.model.ImageSearchQuery
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
@@ -18,6 +19,7 @@ class GalleryFragmentVM @Inject constructor(
 ) : BaseViewModel() {
     private val filterData = MutableStateFlow(ImageSearchQuery())
 
+    @ExperimentalCoroutinesApi
     val imageDataList: Flow<PagingData<ImageResponse>> = filterData.flatMapLatest {
         imageListRepository.getImageFromRepository(it).cachedIn(viewModelScope)
     }

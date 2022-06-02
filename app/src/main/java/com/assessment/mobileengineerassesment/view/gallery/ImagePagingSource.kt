@@ -14,6 +14,7 @@ import java.io.IOException
 class ImagePagingSource(
     private val imageSearchQuery: ImageSearchQuery,
     private val apiService: UnsplashApiService,
+    private val pageSize : Int
 ) : PagingSource<Int, ImageResponse>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ImageResponse> {
@@ -21,11 +22,11 @@ class ImagePagingSource(
         val position: Int = params.key ?: FIRST_PAGE_ITEM
 
         val response: GenericResponse<List<ImageResponse>> =
-            apiService.getImageCollection(position)
+            apiService.getImageCollection(position,pageSize)
 
         return when (response) {
             is BaseResponse.Success -> {
-                if (response.body.isNotEmpty() == true) {
+                if (response.body.isNotEmpty()) {
                     val imageResponse = response.body
                     imageResponseList = imageResponse
                     createPage(imageResponseList, position)
