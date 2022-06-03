@@ -8,6 +8,7 @@ import com.assessment.mobileengineerassesment.R
 import com.assessment.mobileengineerassesment.databinding.FragmentGalleryBinding
 import com.assessment.mobileengineerassesment.model.ImageResponse
 import com.assessment.mobileengineerassesment.view.gallery.adapters.ImagePageAdapter
+import com.assessment.mobileengineerassesment.view.gallery.adapters.PagingLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
@@ -30,7 +31,7 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
 
         observeImageList()
 
-        observePagerState()
+       // observePagerState()
     }
 
     override fun onResume() {
@@ -42,21 +43,23 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
     }
 
     private fun initUi() {
-        bindingView.imageRecyclerViewView.adapter = imagePageAdapter
-    }
-
-    private fun observePagerState() {
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            imagePageAdapter.loadStateFlow.collect {
-                //todo
-            }
-        }
+        bindingView.imageRecyclerViewView.adapter = imagePageAdapter.withLoadStateFooter(
+            footer = PagingLoadStateAdapter { imagePageAdapter.retry() }
+        )
     }
 
     private fun observeImageList() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.imageDataList.collectLatest {
                 imagePageAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+            }
+        }
+    }
+
+    private fun observePagerState() {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            imagePageAdapter.loadStateFlow.collect {
+                //todo
             }
         }
     }
