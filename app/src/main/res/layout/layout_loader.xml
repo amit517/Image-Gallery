@@ -4,31 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="isLoading"
             type="Boolean" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <FrameLayout
         setVisible="@{isLoading}"
-        tools:background="@color/black">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:indeterminateTint="@color/white"
-            ap:layout_constraintBottom_toBottomOf="parent"
-            ap:layout_constraintEnd_toEndOf="parent"
-            ap:layout_constraintHorizontal_bias="0.5"
-            ap:layout_constraintStart_toStartOf="parent"
-            ap:layout_constraintTop_toTopOf="parent"
-            tools:visibility="gone" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:background="@color/black">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminateTint="@color/white"
+                ap:layout_constraintBottom_toBottomOf="parent"
+                ap:layout_constraintEnd_toEndOf="parent"
+                ap:layout_constraintHorizontal_bias="0.5"
+                ap:layout_constraintStart_toStartOf="parent"
+                ap:layout_constraintTop_toTopOf="parent"
+                tools:visibility="gone" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
 
 </layout>
