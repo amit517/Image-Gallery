@@ -1,5 +1,7 @@
 package com.assessment.mobileengineerassesment.view.gallery.adapters
 
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -9,7 +11,7 @@ import com.assessment.mobileengineerassesment.R
 import com.assessment.mobileengineerassesment.databinding.ItemGalleryImageBinding
 import com.assessment.mobileengineerassesment.model.ImageResponse
 
-class ImagePageAdapter(private val imageClickCallback: (ImageResponse?) -> (Any?)) :
+class ImagePageAdapter(private val imageClickCallback: (ImageResponse?, Bitmap) -> (Any?)) :
     PagingDataAdapter<ImageResponse, ImagePageAdapter.ImageResponseViewHolder>(ImageResponse.DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageResponseViewHolder {
@@ -24,7 +26,10 @@ class ImagePageAdapter(private val imageClickCallback: (ImageResponse?) -> (Any?
     override fun onBindViewHolder(holder: ImageResponseViewHolder, position: Int) {
         holder.bind(getItem(position))
         holder.itemView.setOnClickListener {
-            imageClickCallback.invoke(getItem(position))
+            holder.bindingView.image.invalidate()
+            val drawable: BitmapDrawable = holder.bindingView.image.drawable as BitmapDrawable
+            val bitmap: Bitmap = drawable.bitmap
+            imageClickCallback.invoke(getItem(position), bitmap)
         }
     }
 

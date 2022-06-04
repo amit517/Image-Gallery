@@ -1,5 +1,6 @@
 package com.assessment.mobileengineerassesment.view.gallery
 
+import android.graphics.Bitmap
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
@@ -29,9 +30,10 @@ class SharedGalleryVM @Inject constructor(
         filterData.value = ImageSearchQuery(orderBy)
     }
 
-    fun navigateToImageDetails(imageResponse: ImageResponse?) {
+    fun navigateToImageDetails(imageResponse: ImageResponse?,bitmap : Bitmap) {
         imageResponse?.let {
-            _navigateToDestination.postValue(Event(Pair("", imageResponse)))
+            val imagePair = Pair(imageResponse,bitmap)
+            _navigateToDestination.postValue(Event(Pair("", imagePair)))
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.assessment.mobileengineerassesment.view.gallery
 
+import android.graphics.Bitmap
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
@@ -22,8 +23,8 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
     private val viewModel: SharedGalleryVM by activityViewModels()
     private val imagePageAdapter by lazy { ImagePageAdapter(imageClickCallback) }
 
-    private val imageClickCallback = { imageResponse: ImageResponse? ->
-        viewModel.navigateToImageDetails(imageResponse)
+    private val imageClickCallback = { imageResponse: ImageResponse?, bitmap : Bitmap ->
+        viewModel.navigateToImageDetails(imageResponse,bitmap)
     }
 
     override fun layoutId(): Int = R.layout.fragment_gallery
