@@ -1,6 +1,7 @@
 package com.assessment.mobileengineerassesment.utils
 
 import android.net.Uri
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.assessment.mobileengineerassesment.R
@@ -13,6 +14,13 @@ object DataBindingUtils {
     @BindingAdapter("loadImageWithGlide")
     fun loadImage(imageView: ImageView, imageUrl: String?) {
         imageView.loadImage(imageUrl)
+    }
+
+    @JvmStatic
+    @BindingAdapter("setVisible")
+    fun setVisibilityBasedOnBoolean(view: View, value: Boolean) {
+        if (value) view.visibility = View.VISIBLE
+        else view.visibility = View.INVISIBLE
     }
 }
 
