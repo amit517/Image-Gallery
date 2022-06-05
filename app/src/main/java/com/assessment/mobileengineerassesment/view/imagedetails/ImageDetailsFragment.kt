@@ -65,7 +65,7 @@ class ImageDetailsFragment : BaseFragment<FragmentImageDetailsBinding>() {
         }
 
         bindingView.shareImageView.setOnClickListener {
-            attemptToshareImage()
+            attemptToShareImage()
         }
     }
 
@@ -129,7 +129,7 @@ class ImageDetailsFragment : BaseFragment<FragmentImageDetailsBinding>() {
             bitmap)
     }
 
-    private fun attemptToshareImage() {
+    private fun attemptToShareImage() {
         if (bitmap != null) {
             val bmpUri =
                 getBitmapFromDrawable()

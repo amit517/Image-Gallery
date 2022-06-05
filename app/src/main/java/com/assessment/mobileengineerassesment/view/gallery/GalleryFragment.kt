@@ -43,7 +43,7 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
         super.onResume()
         requireArguments().getInt(ARG_ORDER_BY).let { resId ->
             viewModel.submitOrderList(getString(resId))
-            bindingView.headerTextView.text = getString(resId)
+            bindingView.headerTextView.text = getString(resId).replaceFirstChar { it.uppercase() }
         }
     }
 
