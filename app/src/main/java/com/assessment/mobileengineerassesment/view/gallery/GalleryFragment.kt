@@ -23,8 +23,8 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
     private val viewModel: SharedGalleryVM by activityViewModels()
     private val imagePageAdapter by lazy { ImagePageAdapter(imageClickCallback) }
 
-    private val imageClickCallback = { imageResponse: ImageResponse?, bitmap : Bitmap ->
-        viewModel.navigateToImageDetails(imageResponse,bitmap)
+    private val imageClickCallback = { imageResponse: ImageResponse?, bitmap: Bitmap ->
+        viewModel.navigateToImageDetails(imageResponse, bitmap)
     }
 
     override fun layoutId(): Int = R.layout.fragment_gallery
@@ -50,9 +50,11 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
     private fun initUi() {
         bindingView.apply {
             this.viewModel = viewModel
-            imageRecyclerViewView.adapter = imagePageAdapter.withLoadStateFooter(
-                footer = PagingLoadStateAdapter { imagePageAdapter.retry() }
-            )
+            imageRecyclerViewView.apply {
+                adapter = imagePageAdapter.withLoadStateFooter(
+                    footer = PagingLoadStateAdapter { imagePageAdapter.retry() }
+                )
+            }
         }
     }
 

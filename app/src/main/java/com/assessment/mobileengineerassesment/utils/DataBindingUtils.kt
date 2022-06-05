@@ -15,7 +15,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 object DataBindingUtils {
     @JvmStatic
-    @BindingAdapter(value = ["loadImageWithGlide", "imageColour"])
+    @BindingAdapter(value = ["loadImageWithGlide", "placeHolderColor"])
     fun loadImage(imageView: ImageView, imageUrl: String?, color: String?) {
         imageView.loadImage(imageUrl, color)
     }
