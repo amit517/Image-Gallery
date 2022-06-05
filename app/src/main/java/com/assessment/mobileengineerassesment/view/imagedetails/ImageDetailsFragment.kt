@@ -72,7 +72,7 @@ class ImageDetailsFragment : BaseFragment<FragmentImageDetailsBinding>() {
     private fun loadImageUsingGlide() {
         Glide.with(requireContext())
             .asBitmap()
-            .load(args.imageUrls.full)
+            .load(args.imageUrls.regular)
             .listener(object : RequestListener<Bitmap> {
                 override fun onLoadFailed(
                     e: GlideException?,
