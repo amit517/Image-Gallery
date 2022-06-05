@@ -1,11 +1,13 @@
 package com.assessment.mobileengineerassesment.view.gallery
 
+import android.graphics.Bitmap
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.assessment.base.view.BaseFragment
 import com.assessment.base.viewmodel.BaseViewModel
 import com.assessment.mobileengineerassesment.R
 import com.assessment.mobileengineerassesment.databinding.FragmentGalleryParentBinding
+import com.assessment.mobileengineerassesment.model.ImageResponse
 import com.assessment.mobileengineerassesment.view.gallery.adapters.SlidingPageAdapter
 
 class GalleryParentFragment : BaseFragment<FragmentGalleryParentBinding>() {
@@ -31,7 +33,14 @@ class GalleryParentFragment : BaseFragment<FragmentGalleryParentBinding>() {
         viewModel.navigateToDestination.observe(viewLifecycleOwner) {
             if (!it.hasBeenHandled) {
                 it.getContentIfNotHandled().let {
-                    findNavController().navigate(R.id.action_galleryFragment_to_imageDetailsFragment)
+                    val imagePair = it?.second as Pair<ImageResponse, Bitmap>
+                    val imageUrl = imagePair.first.imageUrls
+                    val bitmap = imagePair.second
+                    val action =
+                        GalleryParentFragmentDirections.actionGalleryFragmentToImageDetailsFragment(
+                            bitmap, imageUrl, imagePair.first.id
+                        )
+                    findNavController().navigate(action)
                 }
             }
         }

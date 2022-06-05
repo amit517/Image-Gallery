@@ -1,7 +1,10 @@
 package com.assessment.mobileengineerassesment.model
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class ImageUrls(
     @field:Json(name = "full")
     val full: String,
@@ -15,4 +18,4 @@ data class ImageUrls(
     val smallS3: String,
     @field:Json(name = "thumb")
     val thumb: String
-)
+) : Parcelable

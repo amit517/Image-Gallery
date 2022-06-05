@@ -13,13 +13,26 @@
         <action
             android:id="@+id/action_galleryFragment_to_imageDetailsFragment"
             app:destination="@id/imageDetailsFragment"
-            app:popUpTo="@+id/galleryFragment"/>
+            app:popUpTo="@+id/galleryFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/imageDetailsFragment"
         android:name="com.assessment.mobileengineerassesment.view.imagedetails.ImageDetailsFragment"
         android:label="ImageDetailsFragment"
-        tools:layout="@layout/fragment_image_details"/>
+        tools:layout="@layout/fragment_image_details">
+        <argument
+            android:name="bitmapImage"
+            app:argType="android.graphics.Bitmap"
+            app:nullable="false" />
+        <argument
+            android:name="imageUrls"
+            app:argType="com.assessment.mobileengineerassesment.model.ImageUrls"
+            app:nullable="false" />
+        <argument
+            android:name="imageId"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
 
 </navigation>
