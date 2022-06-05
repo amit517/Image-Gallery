@@ -5,4 +5,6 @@
     <string name="oldest">oldest</string>
     <string name="retry">Retry</string>
     <string name="permission_required">Storage permission needed to save image</string>
+    <string name="send_to">Share Image To</string>
+    <string name="image_not_ready">Please try again after a while</string>
 </resources>

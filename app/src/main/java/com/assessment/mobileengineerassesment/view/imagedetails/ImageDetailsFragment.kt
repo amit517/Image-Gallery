@@ -1,13 +1,17 @@
 package com.assessment.mobileengineerassesment.view.imagedetails
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Build
+import android.os.Environment
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -20,6 +24,9 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 class ImageDetailsFragment : BaseFragment<FragmentImageDetailsBinding>() {
     private val args: ImageDetailsFragmentArgs by navArgs()
@@ -56,33 +63,10 @@ class ImageDetailsFragment : BaseFragment<FragmentImageDetailsBinding>() {
         bindingView.backImageView.setOnClickListener {
             findNavController().popBackStack()
         }
-    }
 
-    private fun requestPermission() {
-        val permissionRequest = arrayListOf<String>()
-
-        val minSDK = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
-        val isWritePermissionGranted = (ContextCompat.checkSelfPermission(requireContext(),
-            Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) || minSDK
-        if (!isWritePermissionGranted) {
-            permissionRequest.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        bindingView.shareImageView.setOnClickListener {
+            attemptToshareImage()
         }
-
-        if (permissionRequest.isNotEmpty()) {
-            askForWritePermission(permissionRequest)
-        } else {
-            downloadImage()
-        }
-    }
-
-    private fun askForWritePermission(permissionRequest: ArrayList<String>) {
-        askPermissions.launch(permissionRequest.toTypedArray())
-    }
-
-    private fun downloadImage() {
-        viewModel.saveImageToGallery(requireContext().contentResolver,
-            args.imageId,
-            bitmap)
     }
 
     private fun loadImageUsingGlide() {
@@ -116,5 +100,67 @@ class ImageDetailsFragment : BaseFragment<FragmentImageDetailsBinding>() {
             .placeholder(BitmapDrawable(resources, args.bitmapImage))
             .into(bindingView.visibleImageView)
         zoomView.setView(bindingView.visibleImageView)
+    }
+
+    private fun requestPermission() {
+        val permissionRequest = arrayListOf<String>()
+
+        val minSDK = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+        val isWritePermissionGranted = (ContextCompat.checkSelfPermission(requireContext(),
+            Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) || minSDK
+        if (!isWritePermissionGranted) {
+            permissionRequest.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+
+        if (permissionRequest.isNotEmpty()) {
+            askForWritePermission(permissionRequest)
+        } else {
+            downloadImage()
+        }
+    }
+
+    private fun askForWritePermission(permissionRequest: ArrayList<String>) {
+        askPermissions.launch(permissionRequest.toTypedArray())
+    }
+
+    private fun downloadImage() {
+        viewModel.saveImageToGallery(requireContext().contentResolver,
+            args.imageId,
+            bitmap)
+    }
+
+    private fun attemptToshareImage() {
+        if (bitmap != null) {
+            val bmpUri =
+                getBitmapFromDrawable()
+            startActivity(Intent.createChooser(Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_STREAM, bmpUri)
+                type = "image/*"
+            }, resources.getText(R.string.send_to)))
+        } else {
+            Toast.makeText(requireContext(),
+                getString(R.string.image_not_ready),
+                Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun getBitmapFromDrawable(): Uri? {
+        var bmpUri: Uri? = null
+        try {
+            val file =
+                File(requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES),
+                    "unsplash ${args.imageId}" + ".png")
+            val out = FileOutputStream(file)
+            bitmap?.compress(Bitmap.CompressFormat.PNG, 100, out)
+            out.close()
+            bmpUri = FileProvider.getUriForFile(requireContext(),
+                "com.assessment.mobileengineerassesment",
+                file)
+
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return bmpUri
     }
 }
