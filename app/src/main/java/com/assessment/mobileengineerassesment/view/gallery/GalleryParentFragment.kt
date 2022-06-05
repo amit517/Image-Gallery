@@ -34,7 +34,7 @@ class GalleryParentFragment : BaseFragment<FragmentGalleryParentBinding>() {
             if (!it.hasBeenHandled) {
                 it.getContentIfNotHandled().let {
                     val imagePair = it?.second as Pair<ImageResponse, Bitmap>
-                    val imageUrl = imagePair.first.imageUrls.regular
+                    val imageUrl = imagePair.first.imageUrls
                     val bitmap = imagePair.second
                     val action =
                         GalleryParentFragmentDirections.actionGalleryFragmentToImageDetailsFragment(

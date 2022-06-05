@@ -26,9 +26,8 @@
             app:argType="android.graphics.Bitmap"
             app:nullable="false" />
         <argument
-            android:name="imageUrl"
-            android:defaultValue=""
-            app:argType="string"
+            android:name="imageUrls"
+            app:argType="com.assessment.mobileengineerassesment.model.ImageUrls"
             app:nullable="false" />
     </fragment>
 

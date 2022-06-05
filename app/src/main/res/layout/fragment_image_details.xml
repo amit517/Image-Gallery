@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/black"
         tools:background="@color/black">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -25,26 +26,6 @@
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="199dp" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/downloadImageView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginBottom="32dp"
-            app:layout_constraintBottom_toBottomOf="@+id/blurImageView"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:src="@drawable/ic_download" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/shareImageView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="32dp"
-            app:layout_constraintBottom_toBottomOf="@+id/blurImageView"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:src="@drawable/ic_baseline_share_24" />
-
         <include
             android:id="@+id/loading"
             layout="@layout/layout_loader"
@@ -54,10 +35,38 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/blurImageView"
-            bind:isLoading="@{true}"
-            />
+            bind:isLoading="@{true}" />
 
-        <!--todo remove loading-->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/downloadImageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="32dp"
+            android:src="@drawable/ic_download"
+            app:layout_constraintBottom_toBottomOf="@+id/blurImageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/shareImageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            android:src="@drawable/ic_baseline_share_24"
+            app:layout_constraintBottom_toBottomOf="@+id/blurImageView"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/backImageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="32dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:layout_constraintBottom_toBottomOf="@+id/blurImageView"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
