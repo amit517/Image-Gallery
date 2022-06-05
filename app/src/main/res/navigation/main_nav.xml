@@ -29,6 +29,10 @@
             android:name="imageUrls"
             app:argType="com.assessment.mobileengineerassesment.model.ImageUrls"
             app:nullable="false" />
+        <argument
+            android:name="imageId"
+            app:argType="string"
+            app:nullable="false" />
     </fragment>
 
 </navigation>

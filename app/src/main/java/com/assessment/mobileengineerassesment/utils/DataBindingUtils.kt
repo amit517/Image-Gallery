@@ -1,8 +1,6 @@
 package com.assessment.mobileengineerassesment.utils
 
-import android.graphics.Bitmap
 import android.graphics.Color
-import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.view.View
@@ -33,26 +31,10 @@ fun ImageView.loadImage(url: String?, color: String?) {
         url?.let {
             Glide.with(this.context)
                 .load(Uri.parse(url))
-                .transform(CenterInside(), RoundedCorners(24))
+                .transform(CenterInside(), RoundedCorners(16))
                 .timeout(60 * 1000)
                 .placeholder(ColorDrawable(Color.parseColor(color)))
                 .error(R.drawable.image_place_holder)
-                .into(this)
-        }
-    } catch (e: Exception) {
-        e.printStackTrace()
-    }
-}
-
-fun ImageView.loadImage(url: String?, placeholder: Bitmap) {
-    try {
-        url?.let {
-            Glide.with(this.context)
-                .load(Uri.parse(url))
-                .timeout(60 * 1000)
-                .placeholder(BitmapDrawable(resources, placeholder))
-                .error(R.drawable.image_place_holder)
-                .centerCrop()
                 .into(this)
         }
     } catch (e: Exception) {

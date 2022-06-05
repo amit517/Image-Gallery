@@ -4,4 +4,5 @@
     <string name="popular">popular</string>
     <string name="oldest">oldest</string>
     <string name="retry">Retry</string>
+    <string name="permission_required">Storage permission needed to save image</string>
 </resources>
