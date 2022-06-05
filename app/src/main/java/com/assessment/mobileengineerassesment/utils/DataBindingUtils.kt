@@ -1,7 +1,9 @@
 package com.assessment.mobileengineerassesment.utils
 
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
@@ -13,9 +15,9 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 object DataBindingUtils {
     @JvmStatic
-    @BindingAdapter("loadImageWithGlide")
-    fun loadImage(imageView: ImageView, imageUrl: String?) {
-        imageView.loadImage(imageUrl)
+    @BindingAdapter(value = ["loadImageWithGlide", "imageColour"])
+    fun loadImage(imageView: ImageView, imageUrl: String?, color: String?) {
+        imageView.loadImage(imageUrl, color)
     }
 
     @JvmStatic
@@ -26,14 +28,14 @@ object DataBindingUtils {
     }
 }
 
-fun ImageView.loadImage(url: String?) {
+fun ImageView.loadImage(url: String?, color: String?) {
     try {
         url?.let {
             Glide.with(this.context)
                 .load(Uri.parse(url))
                 .transform(CenterInside(), RoundedCorners(24))
                 .timeout(60 * 1000)
-                .placeholder(R.drawable.image_place_holder)
+                .placeholder(ColorDrawable(Color.parseColor(color)))
                 .error(R.drawable.image_place_holder)
                 .into(this)
         }
