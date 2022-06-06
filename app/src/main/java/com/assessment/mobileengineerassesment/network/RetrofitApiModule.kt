@@ -43,6 +43,14 @@ object RetrofitApiModule {
 
     @Singleton
     @Provides
+    fun provideRateLimitInterceptor() = RateLimitInterceptor()
+
+    @Singleton
+    @Provides
+    fun provideResponseAdapter() = ResponseAdapterFactory()
+
+    @Singleton
+    @Provides
     fun provideThrowableAdapter() = ThrowableAdapter()
 
     @Singleton
@@ -53,10 +61,12 @@ object RetrofitApiModule {
         cache: Cache,
         @Named("CacheInterceptor") cacheInterceptor: Interceptor,
         @Named("OfflineCacheInterceptor") offlineCacheInterceptor: Interceptor,
+        rateLimitInterceptor: RateLimitInterceptor,
     ) = OkHttpClient.Builder()
         .cache(cache)
         .addNetworkInterceptor(loggingInterceptor)
         .addInterceptor(userInterceptor)
+        .addInterceptor(rateLimitInterceptor)
         .addNetworkInterceptor(cacheInterceptor)
         .addInterceptor(offlineCacheInterceptor)
         .connectTimeout(2, TimeUnit.MINUTES)
@@ -72,10 +82,14 @@ object RetrofitApiModule {
 
     @Singleton
     @Provides
-    fun createRetrofit(client: OkHttpClient, moshi: Moshi) = Retrofit.Builder()
+    fun createRetrofit(
+        client: OkHttpClient,
+        moshi: Moshi,
+        responseAdapterFactory: ResponseAdapterFactory,
+    ) = Retrofit.Builder()
         .client(client)
         .baseUrl(BuildConfig.BASE_URL)
-        .addCallAdapterFactory(ResponseAdapterFactory())
+        .addCallAdapterFactory(responseAdapterFactory)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 
