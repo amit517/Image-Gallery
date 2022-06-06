@@ -37,6 +37,7 @@ fun ImageView.loadImage(url: String?, color: String?) {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(ColorDrawable(Color.parseColor(color)))
                 .error(R.drawable.image_place_holder)
+                .centerCrop()
                 .into(this)
         }
     } catch (e: Exception) {
