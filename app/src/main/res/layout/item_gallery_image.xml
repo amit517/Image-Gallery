@@ -10,16 +10,22 @@
             type="com.assessment.mobileengineerassesment.model.ImageResponse" />
     </data>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/image"
-        loadImageWithGlide="@{imageResponse.imageUrls.thumb}"
-        placeHolderColor="@{imageResponse.color}"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_margin="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/image_place_holder" />
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image"
+            loadImageWithGlide="@{imageResponse.imageUrls.thumb}"
+            placeHolderColor="@{imageResponse.color}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/image_place_holder" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
