@@ -47,6 +47,10 @@ object RetrofitApiModule {
 
     @Singleton
     @Provides
+    fun provideResponseAdapter() = ResponseAdapterFactory()
+
+    @Singleton
+    @Provides
     fun provideThrowableAdapter() = ThrowableAdapter()
 
     @Singleton
@@ -78,10 +82,14 @@ object RetrofitApiModule {
 
     @Singleton
     @Provides
-    fun createRetrofit(client: OkHttpClient, moshi: Moshi) = Retrofit.Builder()
+    fun createRetrofit(
+        client: OkHttpClient,
+        moshi: Moshi,
+        responseAdapterFactory: ResponseAdapterFactory,
+    ) = Retrofit.Builder()
         .client(client)
         .baseUrl(BuildConfig.BASE_URL)
-        .addCallAdapterFactory(ResponseAdapterFactory())
+        .addCallAdapterFactory(responseAdapterFactory)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 

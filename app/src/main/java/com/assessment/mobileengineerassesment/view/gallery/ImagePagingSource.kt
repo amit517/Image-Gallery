@@ -3,7 +3,6 @@ package com.assessment.mobileengineerassesment.view.gallery
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.assessment.base.utils.MsgUtil.networkErrorMsg
-import com.assessment.base.utils.MsgUtil.somethingWentWrong
 import com.assessment.mobileengineerassesment.model.ImageResponse
 import com.assessment.mobileengineerassesment.model.ImageSearchQuery
 import com.assessment.mobileengineerassesment.network.UnsplashApiService
@@ -39,7 +38,7 @@ class ImagePagingSource(
 
             is BaseResponse.NetworkError -> LoadResult.Error(IOException(networkErrorMsg))
 
-            is BaseResponse.UnknownError -> LoadResult.Error(Exception(somethingWentWrong))
+            is BaseResponse.UnknownError -> LoadResult.Error(Exception(response.error?.message))
         }
     }
 
