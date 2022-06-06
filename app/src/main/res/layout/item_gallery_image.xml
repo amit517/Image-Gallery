@@ -15,7 +15,7 @@
         loadImageWithGlide="@{imageResponse.imageUrls.thumb}"
         placeHolderColor="@{imageResponse.color}"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:layout_margin="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
