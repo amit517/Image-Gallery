@@ -43,6 +43,10 @@ object RetrofitApiModule {
 
     @Singleton
     @Provides
+    fun provideRateLimitInterceptor() = RateLimitInterceptor()
+
+    @Singleton
+    @Provides
     fun provideThrowableAdapter() = ThrowableAdapter()
 
     @Singleton
@@ -53,10 +57,12 @@ object RetrofitApiModule {
         cache: Cache,
         @Named("CacheInterceptor") cacheInterceptor: Interceptor,
         @Named("OfflineCacheInterceptor") offlineCacheInterceptor: Interceptor,
+        rateLimitInterceptor: RateLimitInterceptor,
     ) = OkHttpClient.Builder()
         .cache(cache)
         .addNetworkInterceptor(loggingInterceptor)
         .addInterceptor(userInterceptor)
+        .addInterceptor(rateLimitInterceptor)
         .addNetworkInterceptor(cacheInterceptor)
         .addInterceptor(offlineCacheInterceptor)
         .connectTimeout(2, TimeUnit.MINUTES)
