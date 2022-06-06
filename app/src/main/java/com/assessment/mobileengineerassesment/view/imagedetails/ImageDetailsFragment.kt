@@ -21,6 +21,7 @@ import com.assessment.mobileengineerassesment.R
 import com.assessment.mobileengineerassesment.databinding.FragmentImageDetailsBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
@@ -97,6 +98,7 @@ class ImageDetailsFragment : BaseFragment<FragmentImageDetailsBinding>() {
                     return false
                 }
             })
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
             .placeholder(BitmapDrawable(resources, args.bitmapImage))
             .into(bindingView.visibleImageView)
         zoomView.setView(bindingView.visibleImageView)

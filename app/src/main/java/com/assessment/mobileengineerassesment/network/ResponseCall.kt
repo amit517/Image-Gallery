@@ -1,5 +1,7 @@
 package com.assessment.mobileengineerassesment.network
 
+import com.assessment.base.utils.MsgUtil.networkErrorMsg
+import com.assessment.base.utils.MsgUtil.upgradeToPremiumMessage
 import com.assessment.mobileengineerassesment.network.model.BaseResponse
 import okhttp3.Request
 import okhttp3.ResponseBody
@@ -12,7 +14,7 @@ import java.io.IOException
 
 class ResponseCall<S : Any, E : Any>(
     private val delegate: Call<S>,
-    private val errorConverter: Converter<ResponseBody, E>
+    private val errorConverter: Converter<ResponseBody, E>,
 ) : Call<BaseResponse<S, E>> {
 
     override fun enqueue(callback: Callback<BaseResponse<S, E>>) {
@@ -23,6 +25,7 @@ class ResponseCall<S : Any, E : Any>(
                 val body = response.body()
                 val code = response.code()
                 val error = response.errorBody()
+
                 if (response.isSuccessful) {
                     if (body != null) {
                         callback.onResponse(
@@ -42,20 +45,39 @@ class ResponseCall<S : Any, E : Any>(
                         else -> try {
                             errorConverter.convert(error)
                         } catch (ex: Exception) {
+                            ex.printStackTrace()
                             null
                         }
                     }
 
-                    if (errorBody != null) {
-                        callback.onResponse(
-                            this@ResponseCall,
-                            Response.success(BaseResponse.ApiError(errorBody, code))
-                        )
-                    } else {
-                        callback.onResponse(
-                            this@ResponseCall,
-                            Response.success(BaseResponse.UnknownError(Throwable("fail to decode error")))
-                        )
+                    when (code) {
+                        403 -> {
+                            callback.onResponse(
+                                this@ResponseCall,
+                                Response.success(BaseResponse.UnknownError(Throwable(
+                                    upgradeToPremiumMessage)))
+                            )
+                        }
+                        in 500..599 -> {
+                            callback.onResponse(
+                                this@ResponseCall,
+                                Response.success(BaseResponse.UnknownError(Throwable(
+                                    networkErrorMsg)))
+                            )
+                        }
+                        else -> {
+                            if (errorBody != null) {
+                                callback.onResponse(
+                                    this@ResponseCall,
+                                    Response.success(BaseResponse.ApiError(errorBody, code))
+                                )
+                            } else {
+                                callback.onResponse(
+                                    this@ResponseCall,
+                                    Response.success(BaseResponse.UnknownError(Throwable("fail to decode error")))
+                                )
+                            }
+                        }
                     }
                 }
             }

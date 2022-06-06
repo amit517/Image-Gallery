@@ -1,8 +1,7 @@
-package com.assessment.mobileengineerassesment.base
+package com.assessment.mobileengineerassesment
 
 import androidx.navigation.fragment.NavHostFragment
 import com.assessment.base.view.BaseActivity
-import com.assessment.mobileengineerassesment.R
 import com.assessment.mobileengineerassesment.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 

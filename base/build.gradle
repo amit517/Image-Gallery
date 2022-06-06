@@ -16,7 +16,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
-
+    /*
+    assuming base url will be change according staging / production according to it's build type
+    * */
     def BASE_URL = "BASE_URL"
 
     buildTypes {

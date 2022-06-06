@@ -1,4 +1,4 @@
-package com.assessment.mobileengineerassesment.base
+package com.assessment.mobileengineerassesment
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
