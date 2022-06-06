@@ -22,13 +22,11 @@ class ResponseCall<S : Any, E : Any>(
         return delegate.enqueue(object : Callback<S> {
 
             override fun onResponse(call: Call<S>, response: Response<S>) {
-                val header = response.headers()
                 val body = response.body()
                 val code = response.code()
                 val error = response.errorBody()
 
-                val rateLimit = header["x-ratelimit-remaining"]?.toInt()
-                if (response.isSuccessful && rateLimit != null && rateLimit > 0) {
+                if (response.isSuccessful) {
                     if (body != null) {
                         callback.onResponse(
                             this@ResponseCall,
@@ -52,28 +50,34 @@ class ResponseCall<S : Any, E : Any>(
                         }
                     }
 
-                    if (code == 403) {
-                        callback.onResponse(
-                            this@ResponseCall,
-                            Response.success(BaseResponse.UnknownError(Throwable(
-                                upgradeToPremiumMessage)))
-                        )
-                    } else if (code >= 500 || code <= 599) {
-                        callback.onResponse(
-                            this@ResponseCall,
-                            Response.success(BaseResponse.UnknownError(Throwable(
-                                networkErrorMsg)))
-                        )
-                    } else if (errorBody != null) {
-                        callback.onResponse(
-                            this@ResponseCall,
-                            Response.success(BaseResponse.ApiError(errorBody, code))
-                        )
-                    } else {
-                        callback.onResponse(
-                            this@ResponseCall,
-                            Response.success(BaseResponse.UnknownError(Throwable("fail to decode error")))
-                        )
+                    when (code) {
+                        403 -> {
+                            callback.onResponse(
+                                this@ResponseCall,
+                                Response.success(BaseResponse.UnknownError(Throwable(
+                                    upgradeToPremiumMessage)))
+                            )
+                        }
+                        in 500..599 -> {
+                            callback.onResponse(
+                                this@ResponseCall,
+                                Response.success(BaseResponse.UnknownError(Throwable(
+                                    networkErrorMsg)))
+                            )
+                        }
+                        else -> {
+                            if (errorBody != null) {
+                                callback.onResponse(
+                                    this@ResponseCall,
+                                    Response.success(BaseResponse.ApiError(errorBody, code))
+                                )
+                            } else {
+                                callback.onResponse(
+                                    this@ResponseCall,
+                                    Response.success(BaseResponse.UnknownError(Throwable("fail to decode error")))
+                                )
+                            }
+                        }
                     }
                 }
             }
