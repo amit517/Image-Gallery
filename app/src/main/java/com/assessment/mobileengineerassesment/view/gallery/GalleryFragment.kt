@@ -56,6 +56,11 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
                 )
             }
         }
+
+        bindingView.swipeRefresh.setOnRefreshListener {
+            imagePageAdapter.refresh()
+            bindingView.swipeRefresh.isRefreshing = false
+        }
     }
 
     private fun observeImageList() {
