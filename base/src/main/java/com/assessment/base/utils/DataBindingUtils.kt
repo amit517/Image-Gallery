@@ -1,4 +1,4 @@
-package com.assessment.mobileengineerassesment.utils
+package com.assessment.base.utils
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -6,7 +6,7 @@ import android.net.Uri
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import com.assessment.mobileengineerassesment.R
+import com.assessment.base.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterInside
