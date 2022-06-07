@@ -1,4 +1,4 @@
-package com.assessment.mobileengineerassesment.network
+package com.assessment.base.network
 
 import android.content.Context
 import com.assessment.base.BuildConfig
@@ -92,10 +92,6 @@ object RetrofitApiModule {
         .addCallAdapterFactory(responseAdapterFactory)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
-
-    @Provides
-    @Singleton
-    fun provideApiService(retrofit: Retrofit) = retrofit.create(UnsplashApiService::class.java)
 
     @Provides
     @Singleton

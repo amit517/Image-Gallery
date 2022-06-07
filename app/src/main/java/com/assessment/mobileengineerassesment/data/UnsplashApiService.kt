@@ -1,7 +1,7 @@
-package com.assessment.mobileengineerassesment.network
+package com.assessment.mobileengineerassesment.data
 
 import com.assessment.mobileengineerassesment.model.ImageResponse
-import com.assessment.mobileengineerassesment.network.model.GenericResponse
+import com.assessment.base.network.model.GenericResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

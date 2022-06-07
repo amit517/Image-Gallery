@@ -1,8 +1,8 @@
-package com.assessment.mobileengineerassesment.network
+package com.assessment.base.network
 
 import com.assessment.base.utils.MsgUtil.networkErrorMsg
 import com.assessment.base.utils.MsgUtil.upgradeToPremiumMessage
-import com.assessment.mobileengineerassesment.network.model.BaseResponse
+import com.assessment.base.network.model.BaseResponse
 import okhttp3.Request
 import okhttp3.ResponseBody
 import okio.Timeout
