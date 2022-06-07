@@ -3,6 +3,7 @@ package com.assessment.base.network
 import com.assessment.base.utils.MsgUtil.networkErrorMsg
 import com.assessment.base.utils.MsgUtil.upgradeToPremiumMessage
 import com.assessment.base.network.model.BaseResponse
+import com.assessment.base.utils.MsgUtil.somethingWentWrong
 import okhttp3.Request
 import okhttp3.ResponseBody
 import okio.Timeout
@@ -62,7 +63,7 @@ class ResponseCall<S : Any, E : Any>(
                             callback.onResponse(
                                 this@ResponseCall,
                                 Response.success(BaseResponse.UnknownError(Throwable(
-                                    networkErrorMsg)))
+                                    somethingWentWrong)))
                             )
                         }
                         else -> {
@@ -74,7 +75,7 @@ class ResponseCall<S : Any, E : Any>(
                             } else {
                                 callback.onResponse(
                                     this@ResponseCall,
-                                    Response.success(BaseResponse.UnknownError(Throwable("fail to decode error")))
+                                    Response.success(BaseResponse.UnknownError(Throwable(somethingWentWrong)))
                                 )
                             }
                         }
