@@ -1,8 +1,9 @@
-package com.assessment.mobileengineerassesment.gallery
+package com.assessment.mobileengineerassesment.view.gallery
 
 import `test-common`.FakeUnsplashApiService
 import `test-common`.ImageFactory
 import androidx.paging.PagingSource
+import com.assessment.mobileengineerassesment.model.ImageResponse
 import com.assessment.mobileengineerassesment.model.ImageSearchQuery
 import com.assessment.mobileengineerassesment.view.gallery.ImagePagingSource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -38,6 +39,25 @@ class ImagePagingSourceTest {
             actual = pagingSource.load(
                 PagingSource.LoadParams.Refresh(
                     key = null,
+                    loadSize = 1,
+                    placeholdersEnabled = false
+                )
+            )
+        )
+    }
+
+    @Test
+    fun imagePagingSourceLastElement() = runTest {
+        val pagingSource = ImagePagingSource(imageSearchQuery, fakeApi, 2)
+        assertEquals(
+            expected = PagingSource.LoadResult.Page(
+                data = emptyList<ImageResponse>(),
+                prevKey = 4,
+                nextKey = null
+            ),
+            actual = pagingSource.load(
+                PagingSource.LoadParams.Refresh(
+                    key = 5,
                     loadSize = 1,
                     placeholdersEnabled = false
                 )
