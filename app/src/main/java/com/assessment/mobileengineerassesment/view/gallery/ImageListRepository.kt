@@ -5,7 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.assessment.mobileengineerassesment.model.ImageResponse
 import com.assessment.mobileengineerassesment.model.ImageSearchQuery
-import com.assessment.mobileengineerassesment.network.UnsplashApiService
+import com.assessment.mobileengineerassesment.data.UnsplashApiService
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
