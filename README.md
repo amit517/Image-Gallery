@@ -13,12 +13,11 @@
 
 ## Description
 
-In this project I tried to make a simple image list and details presentation application with Native Android. Backend is powered by [Unsplash API](https://unsplash.com/documentation#list-photos). Used minimal third party library support. This project covers di, api response cache, unit test coverage.
+In this project I tried to make a simple image list and full image view presentation application with Native Android. Backend is powered by [Unsplash API](https://unsplash.com/documentation#list-photos). Used minimal third party library support. This project covers di, api response cache, unit tests.
 
 #### Tech stack
 
 - MVVM Design Pattern
-- Viewmodel
 - Flow
 - Coroutine
 - Paging 3
@@ -28,7 +27,6 @@ In this project I tried to make a simple image list and details presentation app
 - Glide
 - Okhttp
 - Retrofit
-- Diffutil
 - Mockwebserver
 - Unit Test
 - Truth
@@ -67,7 +65,7 @@ Multi modular project structure
 
 - Clone this repository from `master` branch.
 - Get a client authorization key from [this link](https://unsplash.com/developers).
-- Replace the UnsplashApiToken from the gradle.properties
+- Replace the `UnsplashApiToken` from the gradle.properties
 - Build the application
 
 [Back To The Top](#read-me-template)
