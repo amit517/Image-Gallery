@@ -5,9 +5,9 @@ import androidx.paging.PagingState
 import com.assessment.base.utils.MsgUtil.networkErrorMsg
 import com.assessment.mobileengineerassesment.model.ImageResponse
 import com.assessment.mobileengineerassesment.model.ImageSearchQuery
-import com.assessment.mobileengineerassesment.network.UnsplashApiService
-import com.assessment.mobileengineerassesment.network.model.BaseResponse
-import com.assessment.mobileengineerassesment.network.model.GenericResponse
+import com.assessment.mobileengineerassesment.data.UnsplashApiService
+import com.assessment.base.network.model.BaseResponse
+import com.assessment.base.network.model.GenericResponse
 import java.io.IOException
 
 class ImagePagingSource(

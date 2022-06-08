@@ -1,4 +1,4 @@
-package com.assessment.mobileengineerassesment.network
+package com.assessment.base.network
 
 import com.google.common.util.concurrent.RateLimiter
 import okhttp3.Interceptor
