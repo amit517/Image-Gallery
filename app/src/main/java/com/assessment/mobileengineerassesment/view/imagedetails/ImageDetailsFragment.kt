@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
@@ -13,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.assessment.base.view.BaseFragment
@@ -25,6 +25,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -68,6 +69,11 @@ class ImageDetailsFragment : BaseFragment<FragmentImageDetailsBinding>() {
         bindingView.shareImageView.setOnClickListener {
             attemptToShareImage()
         }
+
+        lifecycleScope.launch {
+            val bitmap = viewModel.get(args.imageResponse.blurHash,args.imageResponse.width,args.imageResponse.height)
+            bindingView.blurImageView.setImageBitmap(bitmap)
+        }
     }
 
     private fun loadImageUsingGlide() {
@@ -99,7 +105,7 @@ class ImageDetailsFragment : BaseFragment<FragmentImageDetailsBinding>() {
                 }
             })
             .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .placeholder(BitmapDrawable(resources, args.bitmapImage))
+//            .placeholder(BitmapDrawable(resources, args.bitmapImage))
             .into(bindingView.visibleImageView)
         zoomView.setView(bindingView.visibleImageView)
     }

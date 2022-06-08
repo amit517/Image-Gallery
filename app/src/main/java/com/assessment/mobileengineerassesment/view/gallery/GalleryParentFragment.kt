@@ -38,7 +38,7 @@ class GalleryParentFragment : BaseFragment<FragmentGalleryParentBinding>() {
                     val bitmap = imagePair.second
                     val action =
                         GalleryParentFragmentDirections.actionGalleryFragmentToImageDetailsFragment(
-                            bitmap, imageUrl, imagePair.first.id
+                            imagePair.first, imageUrl, imagePair.first.id
                         )
                     findNavController().navigate(action)
                 }

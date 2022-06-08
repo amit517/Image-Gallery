@@ -7,7 +7,12 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import androidx.lifecycle.viewModelScope
+import com.assessment.base.utils.BlurHashDecoder
 import com.assessment.base.viewmodel.BaseViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.util.*
 
@@ -42,4 +47,11 @@ class ImageDetailsVM : BaseViewModel() {
             emitMessage("Image not saved")
         }
     }
+
+    suspend fun get(blurHash: String, width: Int, height: Int): Bitmap? =
+        withContext(Dispatchers.IO) {
+            val bitmap = BlurHashDecoder.decode("LJCGPn-;0L9FxutSa#ROo}%Mf8IA", width, height)
+            bitmap
+        }
 }
+

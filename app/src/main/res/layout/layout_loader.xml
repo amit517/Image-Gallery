@@ -12,13 +12,14 @@
 
     <FrameLayout
         setVisible="@{isLoading}"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:background="@color/black">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:background="@color/black"
+            setVisible="@{isLoading}">
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -32,7 +33,7 @@
                 ap:layout_constraintHorizontal_bias="0.5"
                 ap:layout_constraintStart_toStartOf="parent"
                 ap:layout_constraintTop_toTopOf="parent"
-                tools:visibility="gone" />
+                tools:visibility="" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

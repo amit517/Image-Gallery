@@ -1,8 +1,11 @@
 package com.assessment.mobileengineerassesment.model
 
+import android.os.Parcelable
 import androidx.recyclerview.widget.DiffUtil
 import com.squareup.moshi.Json
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class ImageResponse(
     @field:Json(name = "color")
     val color: String,
@@ -14,7 +17,9 @@ data class ImageResponse(
     val imageUrls: ImageUrls,
     @field:Json(name = "width")
     val width: Int,
-) {
+    @field:Json(name = "blur_hash")
+    val blurHash: String,
+) : Parcelable {
     companion object {
         var DIFF_CALLBACK: DiffUtil.ItemCallback<ImageResponse> =
             object : DiffUtil.ItemCallback<ImageResponse>() {

@@ -22,9 +22,9 @@
         android:label="ImageDetailsFragment"
         tools:layout="@layout/fragment_image_details">
         <argument
-            android:name="bitmapImage"
-            app:argType="android.graphics.Bitmap"
-            app:nullable="true" />
+            android:name="imageResponse"
+            app:argType="com.assessment.mobileengineerassesment.model.ImageResponse"
+            app:nullable="false" />
         <argument
             android:name="imageUrls"
             app:argType="com.assessment.mobileengineerassesment.model.ImageUrls"
