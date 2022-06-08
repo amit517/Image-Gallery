@@ -5,7 +5,6 @@ import `test-common`.ImageFactory
 import androidx.paging.PagingSource
 import com.assessment.mobileengineerassesment.model.ImageResponse
 import com.assessment.mobileengineerassesment.model.ImageSearchQuery
-import com.assessment.mobileengineerassesment.view.gallery.ImagePagingSource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
