@@ -17,7 +17,6 @@ In this project I tried to make a simple image list and details presentation app
 
 #### Tech stack
 
-- Testable kotlin code
 - MVVM Design Pattern
 - Viewmodel
 - Flow
