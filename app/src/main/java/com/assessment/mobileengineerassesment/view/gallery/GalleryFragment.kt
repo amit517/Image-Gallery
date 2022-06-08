@@ -23,7 +23,7 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
     private val viewModel: SharedGalleryVM by activityViewModels()
     private val imagePageAdapter by lazy { ImagePageAdapter(imageClickCallback) }
 
-    private val imageClickCallback = { imageResponse: ImageResponse?, bitmap: Bitmap ->
+    private val imageClickCallback = { imageResponse: ImageResponse?, bitmap: Bitmap? ->
         viewModel.navigateToImageDetails(imageResponse, bitmap)
     }
 
