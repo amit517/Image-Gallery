@@ -1,4 +1,4 @@
-package com.assessment.mobileengineerassesment.network.model
+package com.assessment.base.network.model
 
 data class GenericError (
     val status: Throwable?,

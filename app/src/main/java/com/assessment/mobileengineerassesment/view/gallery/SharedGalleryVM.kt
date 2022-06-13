@@ -30,7 +30,7 @@ class SharedGalleryVM @Inject constructor(
         filterData.value = ImageSearchQuery(orderBy)
     }
 
-    fun navigateToImageDetails(imageResponse: ImageResponse?,bitmap : Bitmap) {
+    fun navigateToImageDetails(imageResponse: ImageResponse?,bitmap : Bitmap?) {
         imageResponse?.let {
             val imagePair = Pair(imageResponse,bitmap)
             _navigateToDestination.postValue(Event(Pair("", imagePair)))

@@ -3,12 +3,11 @@ package com.assessment.mobileengineerassesment.view.gallery
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.assessment.base.utils.MsgUtil.networkErrorMsg
-import com.assessment.base.utils.MsgUtil.somethingWentWrong
 import com.assessment.mobileengineerassesment.model.ImageResponse
 import com.assessment.mobileengineerassesment.model.ImageSearchQuery
-import com.assessment.mobileengineerassesment.network.UnsplashApiService
-import com.assessment.mobileengineerassesment.network.model.BaseResponse
-import com.assessment.mobileengineerassesment.network.model.GenericResponse
+import com.assessment.mobileengineerassesment.data.UnsplashApiService
+import com.assessment.base.network.model.BaseResponse
+import com.assessment.base.network.model.GenericResponse
 import java.io.IOException
 
 class ImagePagingSource(
@@ -39,7 +38,7 @@ class ImagePagingSource(
 
             is BaseResponse.NetworkError -> LoadResult.Error(IOException(networkErrorMsg))
 
-            is BaseResponse.UnknownError -> LoadResult.Error(Exception(somethingWentWrong))
+            is BaseResponse.UnknownError -> LoadResult.Error(Exception(response.error?.message))
         }
     }
 
