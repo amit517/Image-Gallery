@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.assessment.base.view.BaseFragment
 import com.assessment.base.viewmodel.BaseViewModel
 import com.assessment.mobileengineerassesment.R
@@ -51,6 +52,9 @@ class GalleryFragment : BaseFragment<FragmentGalleryBinding>() {
         bindingView.apply {
             this.viewModel = viewModel
             imageRecyclerViewView.apply {
+                layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL).apply {
+                    gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS
+                }
                 adapter = imagePageAdapter.withLoadStateFooter(
                     footer = PagingLoadStateAdapter { imagePageAdapter.retry() }
                 )
