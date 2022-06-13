@@ -31,6 +31,17 @@ class ImagePageAdapter(private val imageClickCallback: (ImageResponse?, Bitmap) 
             val bitmap: Bitmap = drawable.bitmap
             imageClickCallback.invoke(getItem(position), bitmap)
         }
+        holder.itemView.post {
+            val item  = getItem(position)
+            item?.let {
+                val cellWidth = holder.itemView.width
+                val imageLayoutParams: ViewGroup.LayoutParams =
+                    holder.bindingView.image.layoutParams
+                imageLayoutParams.width = cellWidth
+                imageLayoutParams.height = item.height * cellWidth / item.width
+                holder.bindingView.image.layoutParams = imageLayoutParams
+            }
+        }
     }
 
     inner class ImageResponseViewHolder(val bindingView: ItemGalleryImageBinding) :
