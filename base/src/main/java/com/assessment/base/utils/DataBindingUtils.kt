@@ -32,12 +32,11 @@ fun ImageView.loadImage(url: String?, color: String?) {
         url?.let {
             Glide.with(this.context)
                 .load(Uri.parse(url))
-                .transform(CenterInside(), RoundedCorners(16))
+                .transform(CenterInside(), RoundedCorners(8))
                 .timeout(60 * 1000)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(ColorDrawable(Color.parseColor(color)))
                 .error(R.drawable.image_place_holder)
-                .centerCrop()
                 .into(this)
         }
     } catch (e: Exception) {
