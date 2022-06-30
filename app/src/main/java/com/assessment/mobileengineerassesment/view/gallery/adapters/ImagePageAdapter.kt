@@ -13,7 +13,6 @@ import com.assessment.mobileengineerassesment.model.ImageResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ImagePageAdapter(private val imageClickCallback: (ImageResponse?, Bitmap?) -> (Any?)) :
     PagingDataAdapter<ImageResponse, ImagePageAdapter.ImageResponseViewHolder>(ImageResponse.DIFF_CALLBACK) {
@@ -42,7 +41,12 @@ class ImagePageAdapter(private val imageClickCallback: (ImageResponse?, Bitmap?)
         }
         CoroutineScope(Dispatchers.Default).launch {
             holder.itemView.post {
-                val item  = getItem(position)
+                val item = try {
+                    getItem(position)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    null
+                }
                 item?.let {
                     val cellWidth = holder.itemView.width
                     val imageLayoutParams: ViewGroup.LayoutParams =
