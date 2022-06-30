@@ -10,6 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.assessment.mobileengineerassesment.R
 import com.assessment.mobileengineerassesment.databinding.ItemGalleryImageBinding
 import com.assessment.mobileengineerassesment.model.ImageResponse
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ImagePageAdapter(private val imageClickCallback: (ImageResponse?, Bitmap?) -> (Any?)) :
     PagingDataAdapter<ImageResponse, ImagePageAdapter.ImageResponseViewHolder>(ImageResponse.DIFF_CALLBACK) {
@@ -36,15 +40,17 @@ class ImagePageAdapter(private val imageClickCallback: (ImageResponse?, Bitmap?)
             }
             imageClickCallback.invoke(getItem(position), bitmap)
         }
-        holder.itemView.post {
-            val item  = getItem(position)
-            item?.let {
-                val cellWidth = holder.itemView.width
-                val imageLayoutParams: ViewGroup.LayoutParams =
-                    holder.bindingView.image.layoutParams
-                imageLayoutParams.width = cellWidth
-                imageLayoutParams.height = item.height * cellWidth / item.width
-                holder.bindingView.image.layoutParams = imageLayoutParams
+        CoroutineScope(Dispatchers.Default).launch {
+            holder.itemView.post {
+                val item  = getItem(position)
+                item?.let {
+                    val cellWidth = holder.itemView.width
+                    val imageLayoutParams: ViewGroup.LayoutParams =
+                        holder.bindingView.image.layoutParams
+                    imageLayoutParams.width = cellWidth
+                    imageLayoutParams.height = item.height * cellWidth / item.width
+                    holder.bindingView.image.layoutParams = imageLayoutParams
+                }
             }
         }
     }
