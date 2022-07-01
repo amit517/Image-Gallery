@@ -12,6 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "MobileEngineerAssessment"
+rootProject.name = "ImageGallery"
 include ':app'
 include ':base'
