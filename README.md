@@ -1,5 +1,7 @@
 # Image Gallery
 
+![cover](https://user-images.githubusercontent.com/26794776/178654707-3d67264c-17f2-4389-ba11-f490f26c9c2e.png)
+
 ### Table of Contents
 
 - [Description](#description)
